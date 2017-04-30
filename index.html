@@ -7,10 +7,50 @@
 <body>
 <h1>Hero Randomer (DOTA 2)</h1>
 <p>Heroes:</p>
+http://cdn.dota2.com/apps/dota2/images/heroes/sven_full.png
+<br><br>
+<script type="text/javascript">
+function getResults (form) {
+    var nombre = form.inputbox.value;
+	d3.csv("heroes.csv", function (data) {
+		var header = Object.keys(data[0]);
+		data.map(function(d) {
+			//if(d['Name'] == nombre) {
+				alert("Hero: " + d['hero'] + "\nImage: " + d['image']);
+			//}
+		});
+	});
+};
+</script>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+</head>
+<body>
+<FORM NAME="myform" ACTION="" METHOD="GET">Enter a Presidents name to get their Height and Weight: <BR>
+<INPUT TYPE="text" NAME="inputbox" VALUE=""><P>
+<INPUT TYPE="button" NAME="button" Value="Get Results" onClick="getResults(this.form)">
 
-<script src="jquery-3.2.1.min.js">
-console.log("test")
+<script type="text/javascript">
+
+d3.text("heroes.csv", function (data) {
+	var parsedCSV = d3.csv.parseRows(data);
+	var container = d3.select("body")
+		.append("table")
+		.style("border-collapse", "collapse")
+		.style("border", "2px")					
+		.selectAll("tr")
+			.data(parsedCSV).enter()
+			.append("tr")
+			.style("border", "1px black solid")
+			.style("padding", "10px")
+		.selectAll("td")
+			.data(function(d) { return d; }).enter()
+			.append("td")
+			.text(function(d) { return d ; });
+});
 </script>
 
+<img src = "http://cdn.dota2.com/apps/dota2/images/heroes/sven_full.png">
+
+</FORM>
 </body>
 </html>
