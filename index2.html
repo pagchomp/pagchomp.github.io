@@ -8,27 +8,30 @@
 <h1>Hero Randomer (DOTA 2)</h1>
 <p>Heroes:</p>
 <br><br>
-<?php
-
-$csvfile = "heroes.csv";
-$file_handle = fopen($csvfile, "r");
-$line_of_text = array();
-
-while (!feof($file_handle) ) {
-    $line_of_text[] = fgetcsv($file_handle, 1024);
+<script>
+function readTextFile(file)
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, true);
+	var at = [];
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                at.push(allText);
+            }
+        }
+    }
+    rawFile.send(null);
+	return(at)
 }
-fclose($file_handle);
 
-// Random Row and Column
-$random_row = array_rand($line_of_text);
-$random_column =  array_rand($line_of_text[$random_row]);
-echo $line_of_text[$random_row][$random_column];
-
-//Specified Row 5 Column 1
-$row = 5;
-$column = 1;
-echo $line_of_text[$row-1][$column-1];
-?>
+var at = readTextFile("heroes.csv");
+console.log(at);
+</script>
 
 </body>
 </html>
