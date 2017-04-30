@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Hello World</h1>
-<p>Test.</p>
+<h1>Hero Randomer (DOTA 2)</h1>
+<p>Heroes:</p>
+<script>
+var file = new File("/heroes.txt");
+file.open("r"); // open file with read access
+var str = "";
+while (!file.eof) {
+	// read each line of text
+	str += file.readln() + "\n";
+}
+file.close();
+document.write(str)
+</script>
 </body>
 </html>
