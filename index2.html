@@ -1,36 +1,43 @@
 <!DOCTYPE html>
+<html>
 <head>
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
 </head>
-<html>
 <body>
 <h1>Hero Randomer (DOTA 2)</h1>
 <p>Heroes:</p>
 <br><br>
 <script>
-function readTextFile(file)
-{
-    var rawFile = new XMLHttpRequest();
+/*jslint browser:true */
+/*jslint white: true */
+/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */ 
+/*global define */
+"use strict";
+var s = document.createElement('script');
+function readTextFile(file) {
+    var rawFile = new XMLHttpRequest(),
+		textUsed = [];
     rawFile.open("GET", file, true);
-	var at = [];
+
     rawFile.onreadystatechange = function ()
     {
         if(rawFile.readyState === 4)
         {
-            if(rawFile.status === 200 || rawFile.status == 0)
+            if(rawFile.status === 200 || rawFile.status === 0)
             {
                 var allText = rawFile.responseText;
-                at.push(allText);
+                textUsed.push(allText);
             }
         }
-    }
-    rawFile.send(null);
-	return(at)
+    };
+
+	return(textUsed);
 }
 
 var at = readTextFile("heroes.csv");
-console.log(at);
+s.src = at;
+document.body.appendChild(s);
 </script>
 
 </body>
