@@ -16,6 +16,7 @@
         </style>
     </head>
     <body>
+	<div id="randomed"> </div>
         <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
         <script type="text/javascript" charset="utf-8">
 		/*jslint browser:true */
@@ -24,27 +25,12 @@
 		/*global define */
 		/*global d3 */
 		"use strict";
-		
+		document.getElementById("randomed").innerHTML=
+		"use strict";
             d3.text("heroes.csv", function(data) {
-                var parsedCSV = d3.csv.parseRows(data);
-                //var container = d3.select("body")
-                //    .append("table")
-
-                //    .selectAll("tr")
-                //        .data(parsedCSV).enter()
-                //        .append("tr")
-
-                //    .selectAll("td")
-                //        .data(function(d) { return d; }).enter()
-                //        .append("td")
-                //        .text(function(d) { return d; });
- 
-				//for (var i = 1; i < parsedCSV.length; i++) {
-				//	document.write(parsedCSV[i][1])
-				//}
-				//console.log(counts)
-				
-				document.write(parsedCSV[Math.floor((Math.random() * parsedCSV.length) + 2)][1]);				
+                var parsedCSV = d3.csv.parseRows(data);		
+				document.getElementById("randomed").innerHTML=parsedCSV[Math.floor((Math.random() * parsedCSV.length) + 2)][1];
+				// document.write();				
 								
             });
         </script>
