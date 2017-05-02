@@ -15,24 +15,31 @@
             }
         </style>
     </head>
-    <body>
-	<div id="randomed"> </div>
-        <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-        <script type="text/javascript" charset="utf-8">
-		/*jslint browser:true */
-		/*jslint white: true */
-		/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */ 
-		/*global define */
-		/*global d3 */
-		"use strict";
-		document.getElementById("randomed").innerHTML=
-		"use strict";
-            d3.text("heroes.csv", function(data) {
-                var parsedCSV = d3.csv.parseRows(data);		
-				document.getElementById("randomed").innerHTML=parsedCSV[Math.floor((Math.random() * parsedCSV.length) + 2)][1];
-				// document.write();				
-								
-            });
-        </script>
+	<body bgcolor="#000000">
+	<center><img src = "http://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg"></center>
+	<br>
+	<font face="verdana" color = "white">
+	<div id="randomHero" align = "middle"> </div>
+	</font>
+	<br>
+	<div id="randomImage" align = "middle"> </div>
+	
+	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">
+	/*jslint browser:true */
+	/*jslint white: true */
+	/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */ 
+	/*global define */
+	/*global d3 */
+	"use strict";
+		d3.text("heroes.csv", function(data) {
+			var parsedCSV = d3.csv.parseRows(data),
+				hero = parsedCSV[Math.floor((Math.random() * parsedCSV.length) + 2)];
+			document.getElementById("randomHero").innerHTML=hero[0];	
+			document.getElementById("randomImage").innerHTML=hero[1];
+			// document.write();				
+							
+		});
+	</script>
     </body>
 </html>
