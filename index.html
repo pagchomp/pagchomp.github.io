@@ -1,56 +1,52 @@
 <!DOCTYPE html>
-<head>
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-<meta content="utf-8" http-equiv="encoding">
-</head>
-<html>
-<body>
-<h1>Hero Randomer (DOTA 2)</h1>
-<p>Heroes:</p>
-http://cdn.dota2.com/apps/dota2/images/heroes/sven_full.png
-<br><br>
-<script type="text/javascript">
-function getResults (form) {
-    var nombre = form.inputbox.value;
-	d3.csv("heroes.csv", function (data) {
-		var header = Object.keys(data[0]);
-		data.map(function(d) {
-			//if(d['Name'] == nombre) {
-				alert("Hero: " + d['hero'] + "\nImage: " + d['image']);
-			//}
-		});
-	});
-};
-</script>
-<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-</head>
-<body>
-<FORM NAME="myform" ACTION="" METHOD="GET">Enter a Presidents name to get their Height and Weight: <BR>
-<INPUT TYPE="text" NAME="inputbox" VALUE=""><P>
-<INPUT TYPE="button" NAME="button" Value="Get Results" onClick="getResults(this.form)">
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <style>
+            table {
+                border-collapse: collapse;
+                border: 2px black solid;
+                font: 12px sans-serif;
+            }
 
-<script type="text/javascript">
+            td {
+                border: 1px black solid;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+		/*jslint browser:true */
+		/*jslint white: true */
+		/*jslint vars: true, plusplus: true, devel: true, nomen: true, indent: 4, maxerr: 50 */ 
+		/*global define */
+		/*global d3 */
+		"use strict";
+		
+            d3.text("heroes.csv", function(data) {
+                var parsedCSV = d3.csv.parseRows(data);
+                //var container = d3.select("body")
+                //    .append("table")
 
-d3.text("heroes.csv", function (data) {
-	var parsedCSV = d3.csv.parseRows(data);
-	var container = d3.select("body")
-		.append("table")
-		.style("border-collapse", "collapse")
-		.style("border", "2px")					
-		.selectAll("tr")
-			.data(parsedCSV).enter()
-			.append("tr")
-			.style("border", "1px black solid")
-			.style("padding", "10px")
-		.selectAll("td")
-			.data(function(d) { return d; }).enter()
-			.append("td")
-			.text(function(d) { return d ; });
-});
-</script>
+                //    .selectAll("tr")
+                //        .data(parsedCSV).enter()
+                //        .append("tr")
 
-<img src = "http://cdn.dota2.com/apps/dota2/images/heroes/sven_full.png">
-
-</FORM>
-</body>
+                //    .selectAll("td")
+                //        .data(function(d) { return d; }).enter()
+                //        .append("td")
+                //        .text(function(d) { return d; });
+ 
+				//for (var i = 1; i < parsedCSV.length; i++) {
+				//	document.write(parsedCSV[i][1])
+				//}
+				//console.log(counts)
+				
+				document.write(parsedCSV[Math.floor((Math.random() * parsedCSV.length) + 2)][1]);				
+								
+            });
+        </script>
+    </body>
 </html>
